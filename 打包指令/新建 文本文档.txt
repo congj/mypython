@@ -1,0 +1,2 @@
+pyinstaller --onefile --add-data "import os.ini;." read_config.py
+pyinstaller --onefile --windowed size.py
