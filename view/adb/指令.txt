@@ -1,0 +1,2 @@
+检查模拟器是否已被 adb 识别
+adb devices

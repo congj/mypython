@@ -1,0 +1,7 @@
+9.84 MB: D:/mypython\view\dist\size.exe
+9.64 MB: D:/mypython\.git\objects\f9\d5f372f9ee5a64f4bc0aec6d30b6281c414df5
+9.53 MB: D:/mypython\view\build\size\size.pkg
+9.44 MB: D:/mypython\.git\objects\00\6a0fc5d9b741b9d80a1a2e4caf8fa4a5252ac5
+1.43 MB: D:/mypython\view\build\size\PYZ-00.pyz
+1.42 MB: D:/mypython\.git\objects\04\219e00c8c6a1d5cb9d4b8921968c4928bce840
+1.33 MB: D:/mypython\view\build\size\base_library.zip
