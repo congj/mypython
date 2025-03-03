@@ -1,2 +1,6 @@
 检查模拟器是否已被 adb 识别
 adb devices
+
+图片 assistant.png 在屏幕上的位置: (289, 484)
+图片 attack.png 在屏幕上的位置: (767, 386)
+图片 auto.png 在屏幕上的位置: (284, 481)
