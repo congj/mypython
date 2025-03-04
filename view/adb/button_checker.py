@@ -2,7 +2,7 @@ import subprocess
 import time
 import cv2
 import numpy as np
-
+# 这个是好用的
 def adb_screenshot():
     """获取模拟器截图"""
     result = subprocess.run(['adb', 'exec-out', 'screencap', '-p'], stdout=subprocess.PIPE)
@@ -24,38 +24,33 @@ def click_position(x, y):
     """模拟点击指定位置"""
     subprocess.run(['adb', 'shell', 'input', 'tap', str(x), str(y)])
 
-templates = [
-    ('auto', r'D:/mypython/view/adb/clickImage/auto.png'),
-    ('assistant', r'D:/mypython/view/adb/clickImage/assistant.png'),
-    ('attack2', r'D:/mypython/view/adb/clickImage/attack2.png'),  # 修正路径
-    ('attack0', r'D:/mypython/view/adb/clickImage/attack0.png'),
-    ('attack1', r'D:/mypython/view/adb/clickImage/attack1.png'),
-]
+auto_template_path = r'D:/mypython/view/adb/clickImage/auto.png'
 
 while True:
     try:
         screenshot = adb_screenshot()
-        found_any = False
         
-        for button_name, template_path in templates:
-            try:
-                template = cv2.imread(template_path, cv2.IMREAD_COLOR)
-                if template is None:
-                    print(f"无法加载模板图像 {template_path}")
-                    continue
-                
-                position = match_template(screenshot, template)
-                if position is not None:
-                    x, y = position
-                    print(f"找到了 {button_name} 按钮，在位置 {position}")
-                    click_position(x, y)
-                    found_any = True
-                    break
-            except cv2.error as cv_err:
-                print(f"OpenCV 错误: {cv_err}")
+        try:
+            auto_template = cv2.imread(auto_template_path, cv2.IMREAD_COLOR)
+            if auto_template is None:
+                print(f"无法加载模板图像 {auto_template_path}")
+            else:
+                position = match_template(screenshot, auto_template)
+                if position is None:
+                    # 屏幕上没找到 auto 按钮
+                    print("未找到 auto 按钮，执行点击操作")
+                    # 点击两下 806,424
+                    for _ in range(2):
+                        click_position(806, 424)
+                    time.sleep(0.1)
+                    click_position(753,368) #奇术
+                    time.sleep(0.1)
+                    click_position(303, 499) #自动
+                else:
+                    print("找到了 auto 按钮，不进行操作")
         
-        if not found_any:
-            print("未找到任何目标图像")
+        except cv2.error as cv_err:
+            print(f"OpenCV 错误: {cv_err}")
         
         # 等待一段时间后继续下一次检查
         time.sleep(5)  # 根据需要调整等待时间
